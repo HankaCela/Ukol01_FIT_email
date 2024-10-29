@@ -5,12 +5,13 @@ const vysledekElement = document.querySelector('#vysledek');
 document.querySelector('#generujEmail').addEventListener('click', function () {
     const jmeno = jmenoInput.value.trim();
     const prijmeni = prijmeniInput.value.trim();
+    const diacriticsPattern = /[^\w\s]/u;
 
-    const diacriticsPattern = /[ěščřžýáíéúůťňďöäüß]/i;
+    vysledekElement.textContent = '';
 
     if (diacriticsPattern.test(jmeno) || diacriticsPattern.test(prijmeni)) {
         vysledekElement.textContent = "Prosím, zadejte jméno a příjmení bez diakritiky.";
-        return; 
+        return;
     }
 
     const zkracenePrijmeni = prijmeni.slice(0, 5).toLowerCase();
